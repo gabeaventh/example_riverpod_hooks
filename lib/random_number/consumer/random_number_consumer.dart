@@ -4,9 +4,9 @@ import 'package:riverpod_test/random_number/riverpod/random_pod.dart';
 
 // ignore: must_be_immutable
 class RandomNumberConsumer extends ConsumerWidget {
-  int _count = 0;
   RandomNumberConsumer({Key? key}) : super(key: key);
 
+  int _count = 0;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // this print to show that the widget

@@ -13,7 +13,7 @@ class _SecondPageState extends State<SecondPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Second Page'),
+        title: Text('Second Page'),
       ),
       body: Center(
         child: TextButton(
@@ -24,7 +24,7 @@ class _SecondPageState extends State<SecondPage> {
               ),
             );
           },
-          child: const Text('Go back!'),
+          child: Text('Go back!'),
         ),
       ),
     );

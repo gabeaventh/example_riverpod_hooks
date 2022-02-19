@@ -46,10 +46,10 @@ class RandomGeneratorView extends HookConsumerWidget {
             TextButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const SecondPage(),
+                  builder: (context) => SecondPage(),
                 ));
               },
-              child: const Text("Go To Second Page"),
+              child: Text("Go To Second Page"),
             ),
           ],
         ),

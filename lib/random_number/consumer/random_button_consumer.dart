@@ -4,7 +4,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class RandomButton extends ConsumerWidget {
   final ValueChanged<WidgetRef> onPressed;
 
-  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   RandomButton({
     required this.onPressed,
   });
