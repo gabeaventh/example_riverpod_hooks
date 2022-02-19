@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_test/core/core_initiatore.dart';
 import 'package:riverpod_test/random_number/riverpod/random_pod.dart';
 
-abstract class IRandomNumberInitiator {
-  void init(BuildContext context);
-  void dispose();
+abstract class IRandomNumberInitiator extends CoreInitiator {
   void randomNumber(WidgetRef ref);
 }
 

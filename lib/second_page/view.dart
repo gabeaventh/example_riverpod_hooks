@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riverpod_test/random_number/view.dart';
 
 class SecondPage extends StatefulWidget {
   const SecondPage({Key? key}) : super(key: key);
@@ -14,7 +15,18 @@ class _SecondPageState extends State<SecondPage> {
       appBar: AppBar(
         title: const Text('Second Page'),
       ),
-      body: Container(),
+      body: Center(
+        child: TextButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => RandomGeneratorView(),
+              ),
+            );
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
     );
   }
 }
