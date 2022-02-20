@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_test/core/custom_hooks/initAndDispose.dart';
 import 'package:riverpod_test/random_number/consumer/random_button_consumer.dart';
 import 'package:riverpod_test/random_number/consumer/random_number_consumer.dart';
 import 'package:riverpod_test/random_number/initiator.dart';
@@ -17,13 +17,15 @@ class RandomGeneratorView extends HookConsumerWidget {
     debugPrint('build ');
 
     // Init the initiator
-    // and dispose it using hooks useEffect
-    useEffect(() {
-      _initiator = RandomNumberInitiator()..init(context);
-      return () {
+    // and dispose it using custom hooks
+    useInitAndDispose(
+      (context) {
+        _initiator = RandomNumberInitiator()..init(context);
+      },
+      () {
         _initiator.dispose();
-      };
-    });
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
