@@ -1,30 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_test/random_number/view.dart';
+import 'package:riverpod_test/second_page/initiator.dart';
+import 'package:riverpod_test/second_page/model/user.dart';
 
-class SecondPage extends StatefulWidget {
-  const SecondPage({Key? key}) : super(key: key);
+class SecondPage extends HookConsumerWidget {
+  late IUserInitiator _i;
 
   @override
-  State<SecondPage> createState() => _SecondPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    late AsyncValue<User> _user;
+    useEffect(() {
+      _i = UserInitiator()..init(context);
+      return () {
+        _i.dispose();
+      };
+    });
 
-class _SecondPageState extends State<SecondPage> {
-  @override
-  Widget build(BuildContext context) {
+    _user = _i.fetchUser(ref);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Second Page'),
       ),
       body: Center(
-        child: TextButton(
-          onPressed: () {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => RandomGeneratorView(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _user.when(
+              data: (user) => Column(
+                children: [
+                  Text(user.id.toString()),
+                  SizedBox(height: 8),
+                  Text(user.name),
+                  SizedBox(height: 8),
+                  Text(user.username),
+                  SizedBox(height: 8),
+                  Text(user.email),
+                  SizedBox(height: 8),
+                ],
               ),
-            );
-          },
-          child: Text('Go back!'),
+              loading: CircularProgressIndicator.new,
+              error: (e, s) => Text("Error while loading User"),
+            ),
+            SizedBox(height: 24),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => RandomGeneratorView(),
+                  ),
+                );
+              },
+              child: Text('Go back!'),
+            ),
+          ],
         ),
       ),
     );

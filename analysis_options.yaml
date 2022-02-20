@@ -27,7 +27,11 @@ linter:
     - sized_box_for_whitespace
     - unnecessary_null_in_if_null_operators
 analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
   errors:
+    invalid_annotation_target: ignore
     camel_case_types: warning
     camel_case_extensions: warning
     avoid_init_to_null: warning
