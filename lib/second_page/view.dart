@@ -5,12 +5,13 @@ import 'package:riverpod_test/random_number/view.dart';
 import 'package:riverpod_test/second_page/initiator.dart';
 import 'package:riverpod_test/second_page/model/user.dart';
 
+// ignore: must_be_immutable
 class SecondPage extends HookConsumerWidget {
-  late IUserInitiator _i;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     late AsyncValue<User> _user;
+    late IUserInitiator _i;
+
     useEffect(() {
       _i = UserInitiator()..init(context);
       return () {

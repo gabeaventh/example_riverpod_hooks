@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_test/random_number/view.dart';
+import 'package:riverpod_test/todo_list/view.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: RandomGeneratorView(),
+      home: TodosView(),
     );
   }
 }
